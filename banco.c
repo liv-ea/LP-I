@@ -217,6 +217,12 @@ void cadastrar(){
 
 void pesquisar(){
 
+  // Declarações
+
+    char buffer[40];
+
+  // Instruções
+
   system("cls");
 
   printf("********************************************************************\n\n");
@@ -229,6 +235,7 @@ void pesquisar(){
   gets(pedesenha);
 
   if(strcmp(pedesenha, senhadeauto) != 0){
+
 
     system("cls");
 
@@ -253,26 +260,25 @@ void pesquisar(){
 
   } else {
 
-    printf("INSIRA O NOME DO CLIENTE\n");
+    printf("INSIRA O NOME DO CLIENTE\n\n");
     fflush(stdin);
     gets(nome);
 
     cadastro = fopen("cadastro.txt", "a+");
 
-    while (!feof(cadastro)) {
+    strcpy(buffer, "");
 
-      fgets(nome, sizeof(nome), cadastro);
-      nome[strlen(nome)-1]='\0';
+    while (fread(&buffer, sizeof(nome), 6, cadastro)) {
 
-    }
+      if(buffer == nome){
 
-    if(strcmp(nome, user.nome) == 0){
+        printf("\n\nCADASTRO ENCONTRADO\n");
 
-      printf("CLIENTE %s ENCONTRADO\n", nome);
+      } else {
 
-    } else {
+        printf("\n\nCADASTRO NAO ENCONTRADO\n");
 
-      printf("O CLIENTE %s NÃO ESTÁ CADASTRADO\n", nome);
+      }
 
     }
 
@@ -285,7 +291,6 @@ void pesquisar(){
 
 void transacao(){
 
-  // Declarações
 
 }
 
@@ -334,7 +339,9 @@ void listar(){
 
 
       while (fread(&user, sizeof(struct dados), 1, cadastro)) {
-        printf("NOME %s\n", );
+
+        printf("NOME %s\n", user.nome);
+
       }
 
   }
