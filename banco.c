@@ -6,40 +6,38 @@
 
 #define MAXCLIENTES 10000
 
-struct dados{
+  struct dados{
 
-  char senha[10],
+    char nome[40],
+         senha[10],
+         conta[5],
+         saldoconta[5];
+
+  } user;
+
+  char buffer[40],
        confirmar[10],
-       nome[40],
        numconta[6];
 
-  float saldo;
+  int clientes[MAXCLIENTES],
+      numdecadastros = 0;
 
-  int conta,
-      endereco;
+  FILE *cadastro;
 
-} user;
+  char senhadeauto[5] = "34159",
+       pedesenha[5],
+       nome[40];
 
-int clientes[MAXCLIENTES],
-    numdecadastros = 0;
+  void menu();
+  void cadastrar();
+  void pesquisar();
+  void transacao();
+  void ordenar();
+  void listar();
 
-FILE *cadastro;
+  void pedirsenha();
 
-char senhadeauto[5] = "34159",
-     pedesenha[5],
-     nome[40];;
-
-void menu();
-void cadastrar();
-void pesquisar();
-void transacao();
-void ordenar();
-void listar();
-
-void sortearconta();
-void pedirsenha();
-
-int opcao;
+  int opcao;
 
 int main() {
 
@@ -108,32 +106,43 @@ void menu(){
 
 void cadastrar(){
 
-  int i;
+  // Declarações
+
+  int conta;
+
+  // Instruções
 
   system("cls");
 
-  printf("********************************************************************\n\n");
-  printf("\t\tBANCO DO UPE\n\n");
-  printf("\t\tCADASTRO\n\n");
+  printf("********************************************************************\n*\n");
+  printf("*                       BANCO DO UPE                               *\n*\n");
+  printf("*                         CADASTRO                                 *\n*\n");
   printf("********************************************************************\n\n\n\n");
-  printf("POR FAVOR, INSIRA O NOME DO CLIENTE:\n");
+
+
+  printf("\n\nPOR FAVOR, INSIRA O NOME DO CLIENTE:\n");
+
   fflush(stdin);
   gets(user.nome);
-  printf("\n\n");
 
-  printf("OK, %s. DEIXE QUE ELX ESCOLHA UMA SENHA DE ATE 10 CARACTERES\n\n", user.nome);
+  printf("\n\n");
+  printf("DEIXE QUE %s ESCOLHA UMA SENHA DE ATE 10 CARACTERES\n\n", user.nome);
+
   gets(user.senha);
+
   printf("\n\n");
 
   /* Confirmar senha */
 
   printf("CONFIRME A SENHA, POR FAVOR\n\n");
-  gets(user.confirmar);
+
+  gets(confirmar);
+
   printf("\n\n");
 
   /* Comparar senhas antes de continuar */
 
-  if(strcmp(user.confirmar, user.senha) == 0){
+  if(strcmp(confirmar, user.senha) == 0){
 
     /* Confirmar informações antes de escrever em arquivo */
 
@@ -148,25 +157,26 @@ void cadastrar(){
 
     if(opcao == 1){
 
-      /* Escreve o nome e a senha do cliente em arquivo */
+      printf("QUAL EH O SALDO INICIAL DO CLIENTE?\n\n");
+      gets(user.saldoconta);
 
       cadastro = fopen("cadastro.txt", "a");
 
-      fprintf(cadastro, "%s\n", user.nome);
+      /* Sorteio do numero da conta */
 
-      fprintf(cadastro, "%s\n", user.senha);
+      srand(time(NULL));
 
-      fclose(cadastro);
+      conta = rand()%MAXCLIENTES;
 
-      sortearconta();
+      itoa(conta, user.conta, 10);
 
-      printf("%s O NUMERO DA SUA CONTA SERA: %d\t \n\n", user.nome, user.conta);
+      printf("O NUMERO DA CONTA DE %s SERA: %s\t \n\n", user.nome, user.conta);
 
-      /* Número da conta em arquivo */
+      /* Salvando os dados do cliente em arquivo */
 
       cadastro = fopen("cadastro.txt", "a");
 
-      fprintf(cadastro, "%d\n", user.conta);
+      fwrite(&user, sizeof(struct dados), 1, cadastro);
 
       fclose(cadastro);
 
@@ -176,6 +186,7 @@ void cadastrar(){
       printf("1) SIM\n");
       printf("2) NAO\n\n");
 
+      fflush(stdin);
       scanf("%i", &opcao);
 
       if(opcao == 1){
@@ -217,17 +228,13 @@ void cadastrar(){
 
 void pesquisar(){
 
-  // Declarações
-
-    char buffer[40];
-
   // Instruções
 
   system("cls");
 
   printf("********************************************************************\n\n");
-  printf("\t\tBANCO DO UPE\n\n");
-  printf("\t\tPESQUISAR CONTAS\n\n");
+  printf("*                          BANCO DO UPE                            *\n\n");
+  printf("*                        PESQUISAR CONTAS                          *\n\n");
   printf("********************************************************************\n\n\n\n");
   printf("POR FAVOR, INSIRA A SENHA DE AUTORIZACAO DE ACESSO:\n");
 
@@ -236,13 +243,12 @@ void pesquisar(){
 
   if(strcmp(pedesenha, senhadeauto) != 0){
 
-
     system("cls");
 
     printf("********************************************************************\n\n");
-    printf("ACESSO NEGADO\n\n\n");
+    printf("*                           ACESSO NEGADO                          *\n\n\n");
     printf("********************************************************************\n\n\n");
-    printf("\nDESEJA VOLTAR AO MENU?\n\n");
+    printf("\nDESEJA VOLTAR AO MENU?\n\n\n");
     printf("1) SIM\n");
     printf("2) NAO\n\n");
 
@@ -268,9 +274,9 @@ void pesquisar(){
 
     strcpy(buffer, "");
 
-    while (fread(&buffer, sizeof(nome), 6, cadastro)) {
+    while (fread(&user, sizeof(struct dados), 1, cadastro)) {
 
-      if(buffer == nome){
+      if(nome == user.nome){
 
         printf("\n\nCADASTRO ENCONTRADO\n");
 
@@ -303,8 +309,8 @@ void listar(){
   system("cls");
 
   printf("********************************************************************\n\n");
-  printf("\t\tBANCO DO UPE\n\n");
-  printf("\t\tLISTAR CONTAS\n\n");
+  printf("*                          BANCO DO UPE                            *\n\n");
+  printf("*                        PESQUISAR CONTAS                          *\n\n");
   printf("********************************************************************\n\n\n\n");
   printf("POR FAVOR, INSIRA A SENHA DE AUTORIZACAO DE ACESSO:\n");
 
@@ -316,9 +322,9 @@ void listar(){
     system("cls");
 
     printf("********************************************************************\n\n");
-    printf("ACESSO NEGADO\n\n\n");
+    printf("*                           ACESSO NEGADO                          *\n\n\n");
     printf("********************************************************************\n\n\n");
-    printf("\nDESEJA VOLTAR AO MENU?\n\n");
+    printf("\nDESEJA VOLTAR AO MENU?\n\n\n");
     printf("1) SIM\n");
     printf("2) NAO\n\n");
 
@@ -336,52 +342,20 @@ void listar(){
 
   } else {
 
+    cadastro = fopen("cadastro.txt", "r");
 
+    while (fread(&user, sizeof(struct dados), 1, cadastro)) {
 
-      while (fread(&user, sizeof(struct dados), 1, cadastro)) {
-
-        printf("NOME %s\n", user.nome);
-
-      }
-
-  }
-
-}
-
-void sortearconta(){
-
-
-  char comparar[11];
-
-  /* Usando tempo como semente para que os números das contas não se repitam */
-
-  srand(time(NULL));
-
-  /* Sorteio do número da conta */
-
-  user.conta = rand()%MAXCLIENTES;
-
-  /* Transformando a senha em uma string */
-
-  itoa(user.conta, user.numconta, 10);
-
-  /* Percorrer o arquivo de números de contas para verificar se ele já existe */
-
-  cadastro = fopen("cadastro.txt", "r");
-
-  while (!feof(cadastro)) {
-
-    fgets(comparar, sizeof(comparar), cadastro);
-    comparar[strlen(comparar)-1]='\0';
-
-    if(strcmp(user.numconta, comparar) == 0){
-
-      sortearconta();
+      printf("\n\n");
+      printf("NOME: %s\n", user.nome);
+      printf("SENHA: %s\n", user.senha);
+      printf("NUMERO DA CONTA:\n", user.conta);
+      printf("-------------------------\n");
 
     }
 
-  }
+    fclose(cadastro);
 
-  fclose(cadastro);
+}
 
 }
