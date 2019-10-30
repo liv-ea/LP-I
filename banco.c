@@ -51,12 +51,6 @@
 int main() {
 
 
-  /* Configurações de tela */
-
-  /* Troca das cores de fundo e de texto */
-
-  system("color f0");
-
   /* Declaração de variáveis */
 
     char confirmar[10],
@@ -73,14 +67,6 @@ int main() {
 
   strcpy(senhadeauto, "34159");
 
-  /* Deixar o prompt em tela cheia (COMANDOS SÓ FUNCIONAM PARA WINDOWS) */
-
-  system("MODE con cols=168 lines=60");
-
-  /* Dando título à barra de títulos para substituir endereço do diretório*/
-
-  system("title Cadastro Bancario");
-
   /* Chamada do menu para iniciar o programa */
 
   menu(opcao, pedesenha, senhadeauto, confirmar, nome);
@@ -91,6 +77,20 @@ int main() {
 
 void menu(int opcao, char pedesenha[7], char senhadeauto[7], char confirmar[10], char nome[40]){
 
+  /* Configurações de tela */
+
+  /* Troca das cores de fundo e de texto */
+
+  system("color f0");
+
+  /* Deixar o prompt em tela cheia (COMANDOS SÓ FUNCIONAM PARA WINDOWS) */
+
+  system("MODE con cols=168 lines=60");
+
+  /* Dando título à barra de títulos para substituir endereço do diretório*/
+
+  system("title Cadastro Bancario");
+
   int i;
 
   system("cls");
@@ -99,7 +99,7 @@ void menu(int opcao, char pedesenha[7], char senhadeauto[7], char confirmar[10],
 
   gotoxy(50,14);
 
-  /* for para imprimir parte do menu */
+  /* Menu */
 
   printf("%c", 201);
 
@@ -250,27 +250,52 @@ void cadastrar(int opcao, char senhadeauto[7], char pedesenha[7], char confirmar
 
   gotoxy(50,10);
 
-  puts(senhadeauto);
-
   printf("          POR FAVOR, INSIRA A SENHA DE AUTORIZACAO DE ACESSO:           \n");
 
   scanf("%s", pedesenha);
 
-  puts(pedesenha);
-
-  printf("> %d", strcmp(pedesenha, senhadeauto));
-
-  //comp = strcmp(senhadeauto, pedesenha);
-
   if (strcmp(senhadeauto, pedesenha) != 0){
 
-  //  system("cls");
+    system("cls");
 
-    printf("********************************************************************\n");
-    printf("*                                                                  *\n");
-    printf("*                           ACESSO NEGADO                          *\n");
-    printf("*                                                                  *\n");
-    printf("********************************************************************\n\n\n");
+    system("color 4f");
+
+    gotoxy(50,1);
+
+    printf("%c", 201);
+
+    for(i=0 ; i < 70 ; i++){
+
+      printf("%c", 205);
+
+    }
+
+    printf("%c\n", 187);
+
+    gotoxy(50,2);
+    printf("%c                                                                      %c\n", 186, 186);
+    gotoxy(50,3);
+    printf("%c                             BANCO UPE                                %c\n", 186, 186);
+    gotoxy(50,4);
+    printf("%c                                                                      %c\n", 186, 186);
+    gotoxy(50,5);
+    printf("%c                             CADASTRO                                 %c\n", 186, 186);
+    gotoxy(50,6);
+    printf("%c                                                                      %c\n", 186, 186);
+    gotoxy(50,7);
+    printf("%c", 200);
+
+    for(i=0 ; i < 70 ; i++){
+
+      printf("%c", 205);
+
+    }
+
+    printf("%c", 188);
+
+    gotoxy(70,10);
+
+    printf("ACESSO NEGADO\n\n\n");
 
     system("PAUSE");
 
@@ -405,31 +430,115 @@ void cadastrar(int opcao, char senhadeauto[7], char pedesenha[7], char confirmar
 
 void pesquisar(char pedesenha[7], char confirmar[10], char senhadeauto[7], int opcao, char nome[40]){
 
+  // Declarações
+
+  int i,
+      find = 0;
+
   // Instruções
 
   system("cls");
 
-  printf("********************************************************************\n\n");
-  printf("*                          BANCO DO UPE                            *\n\n");
-  printf("*                        PESQUISAR CONTAS                          *\n\n");
-  printf("********************************************************************\n\n\n\n");
-  printf("POR FAVOR, INSIRA A SENHA DE AUTORIZACAO DE ACESSO:\n");
+  gotoxy(50,1);
 
-  fflush(stdin);
-  gets(pedesenha);
+  printf("%c", 201);
+
+  for(i=0 ; i < 70 ; i++){
+
+    printf("%c", 205);
+
+  }
+
+  printf("%c\n", 187);
+
+  gotoxy(50,2);
+  printf("%c                                                                      %c\n", 186, 186);
+  gotoxy(50,3);
+  printf("%c                             BANCO UPE                                %c\n", 186, 186);
+  gotoxy(50,4);
+  printf("%c                                                                      %c\n", 186, 186);
+  gotoxy(50,5);
+  printf("%c                             PESQUISAR                                %c\n", 186, 186);
+  gotoxy(50,6);
+  printf("%c                                                                      %c\n", 186, 186);
+  gotoxy(50,7);
+  printf("%c", 200);
+
+  for(i=0 ; i < 70 ; i++){
+
+    printf("%c", 205);
+
+  }
+
+  printf("%c", 188);
+
+  gotoxy(50,10);
+
+  printf("          POR FAVOR, INSIRA A SENHA DE AUTORIZACAO DE ACESSO:           \n");
+
+  scanf("%s", pedesenha);
 
   if(strcmp(pedesenha, senhadeauto) != 0){
 
     system("cls");
 
-    printf("********************************************************************\n\n");
-    printf("*                           ACESSO NEGADO                          *\n\n\n");
-    printf("********************************************************************\n\n\n");
-    printf("\nDESEJA VOLTAR AO MENU?\n\n\n");
-    printf("1) SIM\n");
-    printf("2) NAO\n\n");
 
-    scanf("%i", &opcao);
+        system("color 4f");
+
+        gotoxy(50,1);
+
+        printf("%c", 201);
+
+        for(i=0 ; i < 70 ; i++){
+
+          printf("%c", 205);
+
+        }
+
+        printf("%c\n", 187);
+
+        gotoxy(50,2);
+        printf("%c                                                                      %c\n", 186, 186);
+        gotoxy(50,3);
+        printf("%c                             BANCO UPE                                %c\n", 186, 186);
+        gotoxy(50,4);
+        printf("%c                                                                      %c\n", 186, 186);
+        gotoxy(50,5);
+        printf("%c                             PESQUISAR                                %c\n", 186, 186);
+        gotoxy(50,6);
+        printf("%c                                                                      %c\n", 186, 186);
+        gotoxy(50,7);
+        printf("%c", 200);
+
+        for(i=0 ; i < 70 ; i++){
+
+          printf("%c", 205);
+
+        }
+
+        printf("%c", 188);
+
+        gotoxy(70,10);
+
+        printf("ACESSO NEGADO\n\n\n");
+
+        system("PAUSE");
+
+        printf("\nDESEJA VOLTAR AO MENU?\n\n\n");
+        printf("1) SIM\n");
+        printf("2) NAO\n\n");
+
+        scanf("%i", &opcao);
+
+        if(opcao == 1){
+
+          menu(opcao, pedesenha, senhadeauto, confirmar, nome);
+
+        } else {
+
+          exit(0);
+
+        }
 
     if(opcao == 1){
 
@@ -445,22 +554,240 @@ void pesquisar(char pedesenha[7], char confirmar[10], char senhadeauto[7], int o
 
     system("cls");
 
-    printf("INSIRA O NOME DO CLIENTE\n\n");
+    gotoxy(50,1);
+
+    printf("%c", 201);
+
+    for(i=0 ; i < 70 ; i++){
+
+      printf("%c", 205);
+
+    }
+
+    printf("%c\n", 187);
+
+    gotoxy(50,2);
+    printf("%c                                                                      %c\n", 186, 186);
+    gotoxy(50,3);
+    printf("%c                             BANCO UPE                                %c\n", 186, 186);
+    gotoxy(50,4);
+    printf("%c                                                                      %c\n", 186, 186);
+    gotoxy(50,5);
+    printf("%c                             PESQUISAR                                %c\n", 186, 186);
+    gotoxy(50,6);
+    printf("%c                                                                      %c\n", 186, 186);
+    gotoxy(50,7);
+    printf("%c", 200);
+
+    for(i=0 ; i < 70 ; i++){
+
+      printf("%c", 205);
+
+    }
+
+    printf("%c", 188);
+
+    gotoxy(50,10);
+
+    printf("\n\nINSIRA O NOME DO CLIENTE\n\n");
 
     fflush(stdin);
     gets(nome);
+
+    system("PAUSE");
+
+    gotoxy(50,1);
+
+    printf("%c", 201);
+
+    for(i=0 ; i < 70 ; i++){
+
+      printf("%c", 205);
+
+    }
+
+    printf("%c\n", 187);
+
+    gotoxy(50,2);
+    printf("%c                                                                      %c\n", 186, 186);
+    gotoxy(50,3);
+    printf("%c                             BANCO UPE                                %c\n", 186, 186);
+    gotoxy(50,4);
+    printf("%c                                                                      %c\n", 186, 186);
+    gotoxy(50,5);
+    printf("%c                             PESQUISAR                                %c\n", 186, 186);
+    gotoxy(50,6);
+    printf("%c                                                                      %c\n", 186, 186);
+    gotoxy(50,7);
+    printf("%c", 200);
+
+    for(i=0 ; i < 70 ; i++){
+
+      printf("%c", 205);
+
+    }
+
+    printf("%c", 188);
 
     cadastro = fopen("cadastro.txt", "r");
 
     while (fread(&user, sizeof(struct Dados), 1, cadastro)) {
 
-      if(nome == user.nome){
 
-        printf("\n\nCADASTRO ENCONTRADO\n");
+        if(strcmp(nome, user.nome) == 0){
+
+          system("cls");
+
+          find++;
+
+          gotoxy(50,1);
+
+          printf("%c", 201);
+
+          for(i=0 ; i < 70 ; i++){
+
+            printf("%c", 205);
+
+          }
+
+          printf("%c\n", 187);
+
+          gotoxy(50,2);
+          printf("%c                                                                      %c\n", 186, 186);
+          gotoxy(50,3);
+          printf("%c                             BANCO UPE                                %c\n", 186, 186);
+          gotoxy(50,4);
+          printf("%c                                                                      %c\n", 186, 186);
+          gotoxy(50,5);
+          printf("%c                             PESQUISAR                                %c\n", 186, 186);
+          gotoxy(50,6);
+          printf("%c                                                                      %c\n", 186, 186);
+          gotoxy(50,7);
+          printf("%c", 200);
+
+          for(i=0 ; i < 70 ; i++){
+
+            printf("%c", 205);
+
+          }
+
+          printf("%c", 188);
+
+          gotoxy(70,10);
+
+          printf("CADASTRO ENCONTRADO");
+
+          do {
+
+            gotoxy(70,12);
+            printf("\n");
+            gotoxy(70,13);
+            printf("NOME:%s\n", user.nome);
+            gotoxy(70,14);
+            printf("SENHA: %s\n", user.senha);
+            gotoxy(70,15);
+            printf("NUMERO DA CONTA:%s\n", user.conta);
+            gotoxy(70,16);
+            printf("SALDO:%s\n", user.saldo);
+            gotoxy(70,17);
+            printf("-------------------------\n");
+
+            strcat(nome, "noloop");
+
+          } while (strcmp(nome, user.nome) == 0);
+
+        }
+
+    }
+
+    if(find == 0){
+
+      gotoxy(50,1);
+
+      printf("%c", 201);
+
+      for(i=0 ; i < 70 ; i++){
+
+        printf("%c", 205);
+
+      }
+
+      printf("%c\n", 187);
+
+      gotoxy(50,2);
+      printf("%c                                                                      %c\n", 186, 186);
+      gotoxy(50,3);
+      printf("%c                             BANCO UPE                                %c\n", 186, 186);
+      gotoxy(50,4);
+      printf("%c                                                                      %c\n", 186, 186);
+      gotoxy(50,5);
+      printf("%c                             PESQUISAR                                %c\n", 186, 186);
+      gotoxy(50,6);
+      printf("%c                                                                      %c\n", 186, 186);
+      gotoxy(50,7);
+      printf("%c", 200);
+
+      for(i=0 ; i < 70 ; i++){
+
+      printf("%c", 205);
+
+      }
+
+      printf("%c", 188);
+
+      gotoxy(75,10);
+
+      printf("CADASTRO NAO ENCONTRADO\n\n\n\n");
+
+      system("PAUSE");
+      system("cls");
+      fflush(stdin);
+      gotoxy(50,1);
+
+      printf("%c", 201);
+
+      for(i=0 ; i < 70 ; i++){
+
+        printf("%c", 205);
+
+      }
+
+      printf("%c\n", 187);
+
+      gotoxy(50,2);
+      printf("%c                                                                      %c\n", 186, 186);
+      gotoxy(50,3);
+      printf("%c                 DESEJA REALIZAR MAIS ALGUMA ACAO?                    %c\n", 186, 186);
+      gotoxy(50,4);
+      printf("%c                                                                      %c\n", 186, 186);
+      gotoxy(50,5);
+      printf("%c", 200);
+
+      for(i=0 ; i < 70 ; i++){
+
+      printf("%c", 205);
+
+      }
+
+      printf("%c", 188);
+
+
+      gotoxy(50,7);
+      printf("1) SIM");
+      gotoxy(50,8);
+      printf("2) NAO");
+
+      fflush(stdin);
+      gotoxy(50,9);
+      scanf("%i", &opcao);
+
+      if(opcao == 1){
+
+        menu(opcao, pedesenha, senhadeauto, confirmar,nome);
 
       } else {
 
-        printf("\n\nCADASTRO NAO ENCONTRADO\n");
+        exit(0);
 
       }
 
@@ -468,12 +795,46 @@ void pesquisar(char pedesenha[7], char confirmar[10], char senhadeauto[7], int o
 
     fclose(cadastro);
 
-    printf("DESEJA REALIZAR MAIS ALGUMA ACAO?\n\n");
+    system("PAUSE");
+    system("cls");
+    fflush(stdin);
+    gotoxy(50,1);
 
-    printf("1) SIM\n");
-    printf("2) NAO\n\n");
+    printf("%c", 201);
+
+    for(i=0 ; i < 70 ; i++){
+
+      printf("%c", 205);
+
+    }
+
+    printf("%c\n", 187);
+
+    gotoxy(50,2);
+    printf("%c                                                                      %c\n", 186, 186);
+    gotoxy(50,3);
+    printf("%c                 DESEJA REALIZAR MAIS ALGUMA ACAO?                    %c\n", 186, 186);
+    gotoxy(50,4);
+    printf("%c                                                                      %c\n", 186, 186);
+    gotoxy(50,5);
+    printf("%c", 200);
+
+    for(i=0 ; i < 70 ; i++){
+
+    printf("%c", 205);
+
+    }
+
+    printf("%c", 188);
+
+
+    gotoxy(50,7);
+    printf("1) SIM");
+    gotoxy(50,8);
+    printf("2) NAO");
 
     fflush(stdin);
+    gotoxy(50,9);
     scanf("%i", &opcao);
 
     if(opcao == 1){
@@ -488,7 +849,7 @@ void pesquisar(char pedesenha[7], char confirmar[10], char senhadeauto[7], int o
 
     }
 
-  }
+}
 
 
 void transacao(){
@@ -504,16 +865,52 @@ void ordenar(){
 
 void listar(int opcao, char pedesenha[7], char senhadeauto[7], char confirmar[10], char nome[40]){
 
+  // Declarações
+
+  int i;
+
+  // Instruções
+
   system("cls");
 
-  printf("********************************************************************\n\n");
-  printf("*                          BANCO DO UPE                            *\n\n");
-  printf("*                          LISTAR CONTAS                           *\n\n");
-  printf("********************************************************************\n\n\n\n");
-  printf("POR FAVOR, INSIRA A SENHA DE AUTORIZACAO DE ACESSO:\n");
+  gotoxy(50,1);
 
-  fflush(stdin);
-  gets(pedesenha);
+  printf("%c", 201);
+
+  for(i=0 ; i < 70 ; i++){
+
+    printf("%c", 205);
+
+  }
+
+  printf("%c\n", 187);
+
+  gotoxy(50,2);
+  printf("%c                                                                      %c\n", 186, 186);
+  gotoxy(50,3);
+  printf("%c                             BANCO UPE                                %c\n", 186, 186);
+  gotoxy(50,4);
+  printf("%c                                                                      %c\n", 186, 186);
+  gotoxy(50,5);
+  printf("%c                               LISTAR                                 %c\n", 186, 186);
+  gotoxy(50,6);
+  printf("%c                                                                      %c\n", 186, 186);
+  gotoxy(50,7);
+  printf("%c", 200);
+
+  for(i=0 ; i < 70 ; i++){
+
+    printf("%c", 205);
+
+  }
+
+  printf("%c", 188);
+
+  gotoxy(50,10);
+
+  printf("          POR FAVOR, INSIRA A SENHA DE AUTORIZACAO DE ACESSO:           \n");
+
+  scanf("%s", pedesenha);
 
   if(strcmp(pedesenha, senhadeauto) != 0){
 
@@ -543,6 +940,39 @@ void listar(int opcao, char pedesenha[7], char senhadeauto[7], char confirmar[10
     system("cls");
 
     cadastro = fopen("cadastro.txt", "r");
+
+    gotoxy(50,1);
+
+    printf("%c", 201);
+
+    for(i=0 ; i < 70 ; i++){
+
+      printf("%c", 205);
+
+    }
+
+    printf("%c\n", 187);
+
+    gotoxy(50,2);
+    printf("%c                                                                      %c\n", 186, 186);
+    gotoxy(50,3);
+    printf("%c                             BANCO UPE                                %c\n", 186, 186);
+    gotoxy(50,4);
+    printf("%c                                                                      %c\n", 186, 186);
+    gotoxy(50,5);
+    printf("%c                               LISTAR                                 %c\n", 186, 186);
+    gotoxy(50,6);
+    printf("%c                                                                      %c\n", 186, 186);
+    gotoxy(50,7);
+    printf("%c", 200);
+
+    for(i=0 ; i < 70 ; i++){
+
+      printf("%c", 205);
+
+    }
+
+    printf("%c", 188);
 
     while(fread(&user, sizeof(struct Dados), 1, cadastro)) {
 
