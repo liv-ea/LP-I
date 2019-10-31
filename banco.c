@@ -427,11 +427,8 @@ void cadastrar(int opcao, char senhadeauto[7], char pedesenha[7], char confirmar
 
       printf("%c", 201);
 
-      for(i=0 ; i < 70 ; i++){
-
+      for(i=0 ; i < 70 ; i++)
         printf("%c", 205);
-
-      }
 
       printf("%c\n", 187);
 
@@ -477,8 +474,44 @@ void cadastrar(int opcao, char senhadeauto[7], char pedesenha[7], char confirmar
 
   } else {
 
-    printf("AS SENHAS NAO CONFEREM, POR FAVOR, REDEFINA-AS\n");
-    printf("DESEJA TENTAR NOVAMENTE?\n\n");
+    system("cls");
+
+    gotoxy(50,1);
+
+    printf("%c", 201);
+
+    for(i=0 ; i < 70 ; i++)
+      printf("%c", 205);
+
+    printf("%c\n", 187);
+
+    gotoxy(50,2);
+    printf("%c                                                                      %c\n", 186, 186);
+    gotoxy(50,3);
+    printf("%c                          AS SENHAS NAO CONFEREM                      %c\n", 186, 186);
+    gotoxy(50,4);
+    printf("%c                                                                      %c\n", 186, 186);
+    gotoxy(50,5);
+    printf("%c                         DESEJA TENTAR NOVAMENTE?                     %c\n", 186, 186);
+    gotoxy(50,6);
+    printf("%c                                                                      %c\n", 186, 186);
+    gotoxy(50,7);
+    printf("%c", 200);
+
+    for(i=0 ; i < 70 ; i++)
+    printf("%c", 205);
+
+    printf("%c", 188);
+
+
+    gotoxy(50,9);
+    printf("1) SIM");
+    gotoxy(50,10);
+    printf("2) NAO");
+
+    fflush(stdin);
+    gotoxy(50,12);
+    scanf("%i", &opcao);
 
     printf("1) SIM\n");
     printf("2) NAO\n\n");
